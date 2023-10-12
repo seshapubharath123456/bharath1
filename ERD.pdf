@@ -1,0 +1,82 @@
+Entities:
+
+Product
+
+ProductID (Primary Key)
+Name
+ManufacturerID (Foreign Key)
+AnimalID (Foreign Key)
+ProductType (Enum: Pet Food, Pet Toy, Pet Apparel)
+Manufacturer
+
+ManufacturerID (Primary Key)
+Name
+Animal
+
+AnimalID (Primary Key)
+Name
+Customer
+
+CustomerID (Primary Key)
+Name
+Email
+Transaction
+
+TransactionID (Primary Key)
+CustomerID (Foreign Key)
+Date
+ProductTransaction (Association Entity)
+
+TransactionID (Foreign Key)
+ProductID (Foreign Key)
+Quantity
+WalmartLocation
+
+LocationID (Primary Key)
+Name
+ZipCode
+Shipment
+
+ShipmentID (Primary Key)
+OriginLocationID (Foreign Key)
+DestinationLocationID (Foreign Key)
+ShipmentDate
+ShipmentProduct (Association Entity)
+
+ShipmentID (Foreign Key)
+ProductID (Foreign Key)
+Quantity
+Attributes:
+
+Product: Weight, Flavor, Target Health Condition
+Pet Toy: Material, Durability
+Pet Apparel: Color, Size, Care Instructions
+Relationships:
+
+Product to Manufacturer (Many-to-One):
+
+Product.ManufacturerID -> Manufacturer.ManufacturerID
+Product to Animal (Many-to-Many):
+
+ProductProductAnimal (Association Table)
+ProductID -> Product.ProductID
+AnimalID -> Animal.AnimalID
+Transaction to Customer (Many-to-One):
+
+Transaction.CustomerID -> Customer.CustomerID
+Transaction to Product (Many-to-Many):
+
+ProductTransaction (Association Table)
+TransactionID -> Transaction.TransactionID
+ProductID -> Product.ProductID
+Shipment to WalmartLocation (Many-to-One):
+
+Shipment.OriginLocationID -> WalmartLocation.LocationID
+Shipment.DestinationLocationID -> WalmartLocation.LocationID
+Shipment to Product (Many-to-Many):
+
+ShipmentProduct (Association Table)
+ShipmentID -> Shipment.ShipmentID
+ProductID -> Product.ProductID
+
+
